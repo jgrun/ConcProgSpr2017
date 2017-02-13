@@ -13,21 +13,24 @@ public class bakery {
       label[i] = 0;
     }
   }
+
+  // Lock the bakery class
   public void lock() {
-    int i = (int)Thread.currentThread().getId();
-    flag[i] = true;
-    label[i] = max++;
+    int i = (int)(Thread.currentThread().getId() - 10)  ;
+    flag[i] = true; // generate flag
+    label[i] = ++max; // label with max
     int j = 0;
     while(true) {
       if(j >= size) j = 0;
-      if(j == i) j += 1;
-      if(flag[j] && ((label[i] < label[j] || label[i] == label[j]) && i < j)) {
+      if(!flag[j] && ((label[i] > label[j]) || (label[i] == label[j] && i > j))) {
         break;
       }
       j++;
     }
   }
+
+  // unlock the bakery class
   public void unlock() {
-    flag[(int)Thread.currentThread().getId()] = false;
+    flag[(int)Thread.currentThread().getId() - 10] = false;
   }
 }
