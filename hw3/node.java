@@ -9,9 +9,9 @@ public class node {
   public node(node item) {
     data = item.data;
     lock = new ReentrantLock();
-    next = NULL;
-    prev = NULL;
-    marked = 0;
+    next = item;
+    prev = item;
+    marked = false;
   }
   public void lock() {
     lock.lock();
