@@ -1,7 +1,7 @@
 public class lazyList {
   node head;
   int length;
-  public lazyList (int n) {
+  public lazyList () {
     length = 0;
     head.data = 0;
     head.next = head;
