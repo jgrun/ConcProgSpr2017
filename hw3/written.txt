@@ -1,0 +1,15 @@
+Question 3:
+  A safe register is safe for reads that do not overlap writes, so I do not
+  think this will satisfy mutual exclusion as the register will not hold up
+  when two or more threads are trying to write to the same location. A regular
+  register adds write overlaps. This means that read from an overlapping write
+  can read different values and so are not mutually exclusive. I don't think
+  wraparound registers would be safe either because, if on the chance that the
+  register wraps, the reads will be significantly different.
+
+Question 4:
+  This implementation is regular because a read will not take place until a
+  writes are complete. This means that even though reads may not get the same
+  value when read, they will still read non-corrupted data. I do not think this
+  is atomic because reads to the same register do not guarantee reading the same
+  value.
