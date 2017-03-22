@@ -14,6 +14,14 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class coarseReentrant extends circBuf {
   private static ReentrantLock lock;
+  public coarseReentrant(int l) {
+    length = l;
+    base = new int[length]; // Initialize buffer of length l
+    numItems = 0; // Init number of items in buffer to 0
+    head = 0; // Init head index to 0
+    tail = 0; // Init tail index to 0
+    lock = new ReentrantLock();
+  }
   public int add(int item) {
     lock.lock(); // Lock at the beginning of the adding item
     try {
@@ -23,6 +31,7 @@ public class coarseReentrant extends circBuf {
       else tail++; // otherwise increment tail
       numItems++; // Increment number of items in buffer
       return 0; // return no error
+    }
     finally{
       lock.unlock(); // unlock regardless of try block exit status
     }
@@ -30,7 +39,7 @@ public class coarseReentrant extends circBuf {
   public int remove() {
     lock.lock(); // Lock at beginning of remove item
     try {
-      if(bufferEmpty()) return null; // if empty return error
+      if(bufferEmpty()) return -3; // if empty return error
       int ret; // Instantiate return variable
       ret = base[head]; // pop first added item
       if(head == length - 1) head = 0; // if head is at end, put at base
@@ -45,7 +54,7 @@ public class coarseReentrant extends circBuf {
   public int peek() {
     lock.lock(); // Lock at beginning of peek
     try{
-      if(bufferEmpty()) return null; // if empty return error
+      if(bufferEmpty()) return -3; // if empty return error
       return base[head]; // return unpopped first added item
     }
     finally {
