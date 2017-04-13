@@ -12,9 +12,8 @@ public class nBoolean {
     size = i;
   }
   public void nBarrierSet(int index) {
-    while(nBarrierCheck(index)) {
-      array.set(index, 1);
-    }
+    while(!nBarrierCheck(index));
+    array.set(index, 1);
     while(!nBarrierCheck(size)){
       System.out.print("");
     }

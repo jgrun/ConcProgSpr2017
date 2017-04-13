@@ -1,0 +1,8 @@
+Experimental results are at the bottom of each program.
+
+I got that the shared counter was faster in all instances. I think this is
+because the shared counter is using one variable and therefore needs to update
+things in the cache less frequently. The n-element array needs to call the item
+needed each time it wants to read or write. This also means that because the
+n element doesn't use locks, there is a lot of spinning while pulling information
+that the shared counter doesn't have to deal with.

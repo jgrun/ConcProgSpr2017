@@ -2,7 +2,7 @@ import java.lang.Thread;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class nTest {
-  static int barrierNum = 4;
+  static int barrierNum = 64;
   static int barrier = barrierNum;
   static long timing;
   static AtomicInteger k = new AtomicInteger(0);
@@ -14,7 +14,6 @@ public class nTest {
         public void run() {
           ThreadLocal<Integer> id = new ThreadLocal<Integer>();
           id.set(k.getAndIncrement());
-          System.out.println(id.get());
           System.out.println("Foo");
           long start = System.currentTimeMillis();
           while((System.currentTimeMillis() - start) < 20);
@@ -38,3 +37,7 @@ public class nTest {
     System.out.println("ms");
   }
 }
+
+// n times 4:  27,  23,  23,  23,  23  :  23.00
+// n times 16: 83,  77,  82,  103, 88  :  84.33
+// n times 64: 671, 508, 400, 609, 614 :  577.00
