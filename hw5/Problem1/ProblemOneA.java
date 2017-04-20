@@ -3,7 +3,7 @@ import java.util.concurrent.BrokenBarrierException;
 
 public class ProblemOneA {
   static int numBuilders = 32;
-  static int numDestroyers = 64;
+  static int numDestroyers = 32;
   static Empire game;
   static Observer watcher;
   static int i;
@@ -23,7 +23,7 @@ public class ProblemOneA {
           } catch(InterruptedException e) {}
           catch(BrokenBarrierException e) {}
           game.build();
-          System.out.println("+" + game.getItems());
+        //  System.out.println("+" + game.getItems());
         }
       });
     }
@@ -35,7 +35,7 @@ public class ProblemOneA {
           } catch(InterruptedException e) {}
           catch(BrokenBarrierException e) {}
           game.destroy();
-          System.out.println("-" + game.getItems());
+        //  System.out.println("-" + game.getItems());
         }
       });
     }
