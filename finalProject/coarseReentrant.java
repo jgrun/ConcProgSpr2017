@@ -11,12 +11,16 @@
 \***************************************************************/
 
 import java.util.concurrent.locks.ReentrantLock;
-import java.util.concurrent.locks.Condition;
 
 public class coarseReentrant extends circBuf {
   private static ReentrantLock lock;
+  private static boolean valid[];
   public coarseReentrant(int l) {
     length = l;
+    valid = new boolean[length];
+    for(int i = 0; i < length; i++) {
+      valid[i] = false;
+    }
     base = new int[length]; // Initialize buffer of length l
     numItems = 0; // Init number of items in buffer to 0
     head = 0; // Init head index to 0
@@ -28,6 +32,8 @@ public class coarseReentrant extends circBuf {
       if(bufferFull()) {
         return 1;
       }
+      if(valid[location]) return 1;
+      valid[location] = true;
       base[location] = item;
       numItems++;
       return 0; // return no error
@@ -42,6 +48,8 @@ public class coarseReentrant extends circBuf {
       if(bufferEmpty()) {
         return -3;
       }
+      if(!valid[location]) return -3;
+      valid[location] = false;
       numItems--;
       return base[location]; // return popped value
     }

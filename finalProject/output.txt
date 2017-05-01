@@ -1,0 +1,77 @@
+Execution time: 5845672ns
+Execution time: 8580402ns
+Execution time: 7472063ns
+Execution time: 6256183ns
+Execution time: 7098454ns
+Execution time: 6304506ns
+Execution time: 6345313ns
+Execution time: 6804934ns
+Execution time: 5197369ns
+Execution time: 7495336ns
+/********************* No Lock ************************/
+Execution time: 5563320ns
+Execution time: 3528084ns
+Execution time: 5498494ns
+Execution time: 4461684ns
+Execution time: 4318237ns
+Execution time: 6116982ns
+Execution time: 5734595ns
+Execution time: 4909075ns
+Execution time: 5585586ns
+Execution time: 4267364ns
+/****************** Atomic 1 Thread *******************/
+Execution time: 205743292ns
+Execution time: 172042815ns
+Execution time: 106586424ns
+Execution time: 153951800ns
+Execution time: 99284480ns
+Execution time: 194960894ns
+Execution time: 225778731ns
+Execution time: 180414640ns
+Execution time: 243461116ns
+Execution time: 160786269ns
+/****************** Atomic 30 Thread *******************/
+Execution time: 643729504ns
+Execution time: 611275883ns
+Execution time: 602263237ns
+Execution time: 627885022ns
+Execution time: 578110643ns
+Execution time: 525192245ns
+Execution time: 575874012ns
+Execution time: 528815973ns
+Execution time: 635634902ns
+Execution time: 618149053ns
+/****************** Atomic 100 Thread ******************/
+Execution time: 7063117ns
+Execution time: 7392803ns
+Execution time: 6913469ns
+Execution time: 12704237ns
+Execution time: 15426584ns
+Execution time: 12293926ns
+Execution time: 7167694ns
+Execution time: 6437948ns
+Execution time: 11467552ns
+Execution time: 11506811ns
+/**************** Coarse 1 Thread ********************/
+Execution time: 82857357ns
+Execution time: 92390411ns
+Execution time: 89932565ns
+Execution time: 101843123ns
+Execution time: 89628219ns
+Execution time: 74060761ns
+Execution time: 99794029ns
+Execution time: 93612219ns
+Execution time: 80009903ns
+Execution time: 95985135ns
+/******************* Coarse 30 Thread **************/
+Execution time: 207010126ns
+Execution time: 198319956ns
+Execution time: 215623505ns
+Execution time: 283587498ns
+Execution time: 200582808ns
+Execution time: 197395511ns
+Execution time: 212771342ns
+Execution time: 208358521ns
+Execution time: 198191026ns
+Execution time: 210352232ns
+/****************** Coarse 100 Thread *************/

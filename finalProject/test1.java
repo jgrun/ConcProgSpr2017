@@ -3,12 +3,12 @@ import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.BrokenBarrierException;
 import java.util.Random;
 
-public class test {
+public class test1 {
   static int threadCount = 1; // Implement this many threads to test with
   static int bufSize = 512; // Size of circBuf to test with
   static int i;
   final static CyclicBarrier gate = new CyclicBarrier((2*threadCount) + 1);
-  static coarseReentrant buf = new coarseReentrant(bufSize);
+  static noLock buf = new noLock(bufSize);
   static Random numgen = new Random();
 
   public static void main(String[] args) {
