@@ -15,23 +15,14 @@ public class fineReentrant extends circBuf {
   private static ReentrantLock lock;
   public int add(int item) {
     if(bufferFull()) return 1; // if full, return error
-    base[tail] = item; // Place item
-    if(tail == length - 1) tail = 0; // If tail at end, put at base
-    else tail++; // otherwise increment tail
-    numItems++; // Increment number of items in buffer
     return 0; // return no error
   }
   public int remove() {
-    if(bufferEmpty()) return null; // if empty return error
-    int ret; // Instantiate return variable
-    ret = base[head]; // pop first added item
-    if(head == length - 1) head = 0; // if head is at end, put at base
-    else head++; // otherwise increment head
-    numItems--; // decrement number of items in buffer
-    return ret; // return popped value
+    if(bufferEmpty()) return -3; // if empty return error
+    return 1; // return popped value
   }
   public int peek() {
-    if(bufferEmpty()) return null; // if empty return error
+    if(bufferEmpty()) return -3; // if empty return error
     return base[head]; // return unpopped first added item
   }
 }

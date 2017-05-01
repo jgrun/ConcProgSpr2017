@@ -11,6 +11,7 @@
 \***************************************************************/
 
 import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.locks.Condition;
 
 public class coarseReentrant extends circBuf {
   private static ReentrantLock lock;
@@ -19,43 +20,40 @@ public class coarseReentrant extends circBuf {
     base = new int[length]; // Initialize buffer of length l
     numItems = 0; // Init number of items in buffer to 0
     head = 0; // Init head index to 0
-    tail = 0; // Init tail index to 0
     lock = new ReentrantLock();
   }
-  public int add(int item) {
+  public int add(int item, int location) {
     lock.lock(); // Lock at the beginning of the adding item
     try {
-      if(bufferFull()) return 1; // if full, return error
-      base[tail] = item; // Place item
-      if(tail == length - 1) tail = 0; // If tail at end, put at base
-      else tail++; // otherwise increment tail
-      numItems++; // Increment number of items in buffer
+      if(bufferFull()) {
+        return 1;
+      }
+      base[location] = item;
+      numItems++;
       return 0; // return no error
     }
     finally{
       lock.unlock(); // unlock regardless of try block exit status
     }
   }
-  public int remove() {
+  public int remove(int location) {
     lock.lock(); // Lock at beginning of remove item
     try {
-      if(bufferEmpty()) return -3; // if empty return error
-      int ret; // Instantiate return variable
-      ret = base[head]; // pop first added item
-      if(head == length - 1) head = 0; // if head is at end, put at base
-      else head++; // otherwise increment head
-      numItems--; // decrement number of items in buffer
-      return ret; // return popped value
+      if(bufferEmpty()) {
+        return -3;
+      }
+      numItems--;
+      return base[location]; // return popped value
     }
     finally {
       lock.unlock(); // unlock regardless of try block exit status
     }
   }
-  public int peek() {
+  public int peek(int location) {
     lock.lock(); // Lock at beginning of peek
     try{
       if(bufferEmpty()) return -3; // if empty return error
-      return base[head]; // return unpopped first added item
+      return base[location]; // return unpopped first added item
     }
     finally {
       lock.unlock(); // unlock regardless of try exit status
